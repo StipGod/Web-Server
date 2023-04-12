@@ -1,17 +1,76 @@
 <!DOCTYPE html>
-<html lang="en">
-  <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta http-equiv="X-UA-Compatible" content="ie=edge">
-    <title>My Website</title>
-    <link rel="stylesheet" href="./style.css">
-    <link rel="icon" href="./favicon.ico" type="image/x-icon">
-  </head>
-  <body>
-    <main>
-        <h1>Welcome to My Website</h1>  
-    </main>
-  </body>
+<html>
+<head>
+        <title>Sigma Movies</title>
+        <style>
+                body {
+                        font-family: Arial, sans-serif;
+                        background-color: #f2f2f2;
+                }
+                h1 {
+                        text-align: center;
+                        margin-top: 50px;
+                        margin-bottom: 50px;
+                }
+                .container {
+                        display: flex;
+                        flex-wrap: wrap;
+                        justify-content: center;
+                        align-items: center;
+                        max-width: 800px;
+                        margin: 0 auto;
+                }
+                .card {
+                        background-color: white;
+                        box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.2);
+                        margin: 20px;
+                        width: 300px;
+                        text-align: center;
+                }
+                .card img {
+                        width: 100%;
+                        height: 300px;
+                        object-fit: cover;
+                }
+                .card h2 {
+                        margin-top: 20px;
+                        margin-bottom: 10px;
+                }
+                .card p {
+                        margin-bottom: 20px;
+                        font-size: 16px;
+                        line-height: 1.5;
+                        padding: 0 20px;
+                }
+        </style>
+</head>
+<body>
+        <h1>Sigma Movies</h1>
+        <div class="container">
+                <div class="card">
+                        <img src="https://m.media-amazon.com/images/M/MV5BZTM2ZGJmNjQtN2UyOS00NjcxLWFjMDktMDE2NzMyNTZlZTBiXkEyXkFqcGdeQXVyNzkwMjQ5NzM@._V1_FMjpg_UX1000_.jpg" alt="American Psycho">
+                        <h2>American Psycho (2000)</h2>
+                        <p>A wealthy New York investment banking executive hides his alternate psychopathic ego from his co-workers and friends as he delves deeper into his violent, hedonistic fantasies.</p>
+                </div>
+                <div class="card">
+                        <img src="https://pics.filmaffinity.com/Joker-790658206-large.jpg" alt="Joker">
+                        <h2>Joker (2019)</h2>
+                        <p>In Gotham City, mentally troubled comedian Arthur Fleck is disregarded and mistreated by society. He then embarks on a downward spiral of revolution and bloody crime. This path brings him face-to-face with his alter-ego: the Joker.</p>
+                </div>
+                <div class="card">
+                        <img src="https://m.media-amazon.com/images/I/91vya3UmldL._AC_UF894,1000_QL80_.jpg" alt="Drive">
+                        <h2>Drive (2011)</h2>
+                        <p>A mysterious Hollywood stuntman and mechanic moonlights as a getaway driver and finds himself in trouble when he helps out his neighbor.</p>
+                </div>
+                <div class="card">
+                        <img src="https://pics.filmaffinity.com/taxi_driver-173769074-large.jpg" alt="Taxi Driver">
+                        <h2>Taxi Driver (1976)</h2>
+                        <p>A mentally unstable veteran works as a nighttime taxi driver in New York City, where the perceived decadence and sleaze fuels his urge for violent action by attempting to liberate a presidential campaign worker and an underage prostitute.</p>
+                </div>
+                <div class="card">
+                        <img src="https://i.ebayimg.com/images/g/9pcAAOSw3Zxg5ss-/s-l500.jpg" alt="Fight Club">
+                        <h2>Fight Club (1999)</h2>
+                        <p>An insomniac office worker and a devil-may-care soap maker form an underground fight club that evolves into something much, much more.</p>
+                </div>
+</body>
 </html>
-
