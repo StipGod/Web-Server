@@ -5,7 +5,7 @@
 #include <arpa/inet.h>
 #include <unistd.h>
 
-#define BUFFER_SIZE 1024
+#define BUFFER_SIZE 8192
 
 void log_message(char* message, char* log_file_path) {
     FILE* log_file = fopen(log_file_path, "a");
@@ -82,14 +82,16 @@ int main(int argc, char const *argv[]) {
         // Handle GET request
         if (strcmp(method, "GET") == 0) {
             // Try to open the requested resource
+            printf("Entre el if gigante \n");
             FILE* resource_file = fopen(full_resource_path, "r");
             if (resource_file == NULL) {
                 // Resource not found
                 send_response(new_socket, 404, "Not Found", "text/html", "<html><body><h1>404 Not Found</h1></body></html>");
             } else {
                 // Resource found, send it to the client
-                if (strcmp(request_method, "GET") == 0) {
+                if (strcmp(method, "GET") == 0) {
                     // Handle GET request
+                    printf("Entre en el GET\n");
                     char file_buffer[BUFFER_SIZE];
                     int file_size;
                     fseek(resource_file, 0L, SEEK_END);
@@ -98,31 +100,65 @@ int main(int argc, char const *argv[]) {
                     fread(file_buffer, 1, file_size, resource_file);
                     fclose(resource_file);
                     send_response(new_socket, 200, "OK", "text/html", file_buffer);
-                } else if (strcmp(request_method, "HEAD") == 0) {
-                    // Handle HEAD request
-                    fclose(resource_file);
-                    send_response(new_socket, 200, "OK", "text/html", "");
-                } else if (strcmp(request_method, "POST") == 0) {
-                    // Handle POST request
-                    char content_length_str[BUFFER_SIZE];
-                    char* content_length_header = strstr(buffer, "Content-Length: ");
-                    if (content_length_header == NULL) {
-                        // Invalid POST request, missing Content-Length header
-                        send_response(new_socket, 400, "Bad Request", "text/html", "<html><body><h1>400 Bad Request</h1></body></html>");
-                        fclose(resource_file);
-                        continue;
-                    }
-                    sscanf(content_length_header, "Content-Length: %s", content_length_str);
-                    int content_length = atoi(content_length_str);
-                    char* body = malloc(content_length + 1);
-                    fread(body, 1, content_length, resource_file);
-                    body[content_length] = '\0';
-                    fclose(resource_file);
-                    // Echo back the POST body as response
-                    send_response(new_socket, 200, "OK", "text/plain", body);
                 } else {
                     // Unsupported request method
                     fclose(resource_file);
                     send_response(new_socket, 400, "Bad Request", "text/html", "<html><body><h1>400 Bad Request</h1></body></html>");
                 }
+
+
+
             }
+            
+        } else {
+            printf("NO ESTOY EN EL IF GIGANTE\n");
+            FILE *resource_file = fopen(full_resource_path, "r");
+            if (resource_file == NULL) {
+                // Resource not found
+                send_response(new_socket, 404, "Not Found", "text/html",
+                              "<html><body><h1>404 Not Found</h1></body></html>");
+            } else if (strcmp(method, "HEAD") == 0) {
+                // Handle HEAD request
+                printf("Entre en el HEAD\n");
+                fclose(resource_file);
+                send_response(new_socket, 200, "OK", "text/html", "");
+            } else if (strcmp(method, "POST") == 0) {
+                // Read the content length from the request headers
+                int content_length = 0;
+                char* content_length_header = strstr(buffer, "Content-Length:");
+                if (content_length_header != NULL) {
+                    content_length = atoi(content_length_header + strlen("Content-Length:"));
+                }
+
+                // Read the request body
+                char* body = malloc(content_length + 1);
+                int body_len = 0;
+                while (body_len < content_length) {
+                    int n = read(new_socket, body + body_len, content_length - body_len);
+                    if (n < 0) {
+                        perror("Error reading from socket");
+                        exit(EXIT_FAILURE);
+                    }
+                    body_len += n;
+                }
+                body[content_length] = '\0';
+                printf("Request body: %s\n", body);
+                log_message(body, log_file_path); // Log the request body
+
+                // Process the request body, in this case we simply echo it back to the client
+                send_response(new_socket, 200, "OK", "text/html", body);
+
+                // Free dynamically allocated memory
+                free(body);
+            } else {
+                // Unsupported request method
+                fclose(resource_file);
+                send_response(new_socket, 400, "Bad Request", "text/html", "<html><body><h1>400 Bad Request</h1></body></html>");
+            }
+
+        }
+                    // Close the socket
+                    close(new_socket);
+    }
+    return 0;
+}
