@@ -4,9 +4,30 @@ Este es un servidor web simple implementado en el lenguaje de programación C ut
 
 ## Requisitos previos
 
-Antes de compilar y ejecutar este servidor web, asegúrate de tener instalada la librería de Beverly Sockets en tu sistema operativo. También es recomendable tener instalada la herramienta Postman o cualquier otro cliente HTTP para probar el servidor.
+Antes de compilar y ejecutar este servidor web necesitaremos el servicio de nube AWS EC2 para el despligue, tambien asegúrate de tener instalada la librería de Beverly Sockets en tu sistema operativo. También es recomendable tener instalada la herramienta Postman o cualquier otro cliente HTTP para probar el servidor. Aqui te enseñamos todo!!
+### Cómo iniciar una instancia EC2 en AWS y actualizar el sistema operativo
 
-#### Instrucciones para instalar GCC en Linux
+Este documento proporciona instrucciones paso a paso sobre cómo iniciar una instancia EC2 en AWS y actualizar su sistema operativo.
+
+### Iniciar una instancia EC2
+
+Para iniciar una instancia EC2 en AWS, siga estos pasos:
+
+1. Inicie sesión en el Panel de Control de AWS.
+2. Navegue hasta la sección de instancias EC2 haciendo clic en "Instancias EC2" en la sección "Servicios" del menú desplegable.
+3. Haga clic en "Lanzar instancia" para comenzar el proceso de creación de una nueva instancia.
+4. Seleccione la AMI que mejor se adapte a sus necesidades y haga clic en "Siguiente".
+5. Seleccione el tipo de instancia que desea lanzar y haga clic en "Siguiente".
+6. Configure los detalles de la instancia, como la red en la que desea lanzar la instancia, la configuración de seguridad y otros detalles importantes. Haga clic en "Siguiente" una vez que haya configurado estos detalles.
+7. Configure el almacenamiento para su instancia. Puede seleccionar el tipo de almacenamiento que desea utilizar, así como el tamaño y la cantidad de discos que desea asignar a la instancia. Haga clic en "Siguiente" una vez que haya configurado estos detalles.
+8. Configure las etiquetas para su instancia. Las etiquetas son útiles para identificar su instancia y organizarla dentro de su cuenta de AWS. Haga clic en "Siguiente" una vez que haya configurado estas etiquetas.
+9. Revise todas las configuraciones de su instancia y haga clic en "Lanzar" para iniciar el proceso de lanzamiento de la instancia.
+
+### Actualizar el sistema operativo
+
+Una vez que haya lanzado su instancia, puede conectarse a ella utilizando una herramienta de conexión remota, como SSH. Una vez conectado, puede actualizar el sistema operativo de su instancia utilizando los comandos adecuados para el sistema operativo que esté utilizando.
+
+### Instrucciones para instalar GCC en Linux
 
 1. Abre la terminal en tu distribución de Linux.
 
@@ -36,6 +57,10 @@ Es importante mencionar que la carpeta `public` debe contener cualquier otro arc
 
 ## Compilación y ejecución del servidor
 
+primero debemos clonar el repositorio, puede hacerlo con el siguiente comando:
+         
+     git clone <url del repositorio>
+     
 Para compilar el código fuente del servidor web, utiliza el siguiente comando en la terminal:
 
       gcc server.c -o server
@@ -84,6 +109,12 @@ Respuesta:
       </html>
       ```
       ```
+      
+## Conclusiones
+
+En conclusión, este proyecto fue un gran éxito en términos de lograr nuestros objetivos iniciales. Hemos aprendido mucho en el proceso y hemos mejorado nuestras habilidades en la programación en C
+
+este servidor web simple implementado en C utilizando la librería de Beverly Sockets es una buena opción para aquellos que buscan una solución ligera y personalizada para manejar solicitudes HTTP en un archivo index.html. Si bien es importante tener en cuenta los requisitos previos, como la instalación de la librería de Beverly Sockets y el uso de una instancia EC2 de AWS para el despliegue, una vez configurado y en ejecución, el servidor es fácil de probar y personalizar para adaptarse a las necesidades específicas del usuario.
 
 
 
