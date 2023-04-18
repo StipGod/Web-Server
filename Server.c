@@ -5,7 +5,7 @@
 #include <arpa/inet.h>
 #include <unistd.h>
 
-#define BUFFER_SIZE 8192
+#define BUFFER_SIZE 8589934592
 
 void log_message(char* message, char* log_file_path) {
     FILE* log_file = fopen(log_file_path, "a");
@@ -23,6 +23,35 @@ void send_response(int socket, int status_code, char* status_message, char* cont
     send(socket, buffer, strlen(buffer), 0);
     printf("Response sent:\n%s\n", buffer);
 }
+
+char* get_mime_type(char* file_name) {
+    const char* ext = strrchr(file_name, '.');
+    if (ext == NULL) {
+        return "application/octet-stream";
+    }
+    if (strcmp(ext, ".html") == 0 || strcmp(ext, ".htm") == 0) {
+        printf("html ----------------------------------------------------------------");
+        return "text/html";
+    } else if (strcmp(ext, ".txt") == 0) {
+        return "text/plain";
+    } else if (strcmp(ext, ".jpg") == 0 || strcmp(ext, ".jpeg") == 0) {
+        printf("jpg ----------------------------------------------------------------");
+        return "image/jpeg";
+    } else if (strcmp(ext, ".gif") == 0) {
+        return "image/gif";
+    } else if (strcmp(ext, ".png") == 0) {
+        return "image/png";
+    } else if (strcmp(ext, ".pdf") == 0) {
+        return "application/pdf";
+    } else if (strcmp(ext, ".js") == 0) {
+        return "application/javascript";
+    } else if (strcmp(ext, ".css") == 0) {
+        return "text/css";
+    } else {
+        return "application/octet-stream";
+    }
+}
+
 
 int main(int argc, char const *argv[]) {
     if (argc != 4) {
@@ -99,7 +128,8 @@ int main(int argc, char const *argv[]) {
                     fseek(resource_file, 0L, SEEK_SET);
                     fread(file_buffer, 1, file_size, resource_file);
                     fclose(resource_file);
-                    send_response(new_socket, 200, "OK", "text/html", file_buffer);
+                    char* content_type = get_mime_type(full_resource_path);
+                    send_response(new_socket, 200, "OK", content_type, file_buffer);
                 } else {
                     // Unsupported request method
                     fclose(resource_file);
