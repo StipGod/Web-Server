@@ -5,7 +5,7 @@
 #include <arpa/inet.h>
 #include <unistd.h>
 
-#define BUFFER_SIZE 8589934592
+#define BUFFER_SIZE 1048576
 
 void log_message(char* message, char* log_file_path) {
     FILE* log_file = fopen(log_file_path, "a");
@@ -135,9 +135,6 @@ int main(int argc, char const *argv[]) {
                     fclose(resource_file);
                     send_response(new_socket, 400, "Bad Request", "text/html", "<html><body><h1>400 Bad Request</h1></body></html>");
                 }
-
-
-
             }
             
         } else {
