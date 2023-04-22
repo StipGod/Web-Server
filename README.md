@@ -1,6 +1,18 @@
-# Servidor web en C con implementación de API Beverly Sockets
+# Servidor web en C con implementación de API Berkerly Sockets
 
-Este es un servidor web simple implementado en el lenguaje de programación C utilizando la librería de Beverly Sockets. El servidor web puede manejar solicitudes HTTP GET, POST y HEAD en un archivo `index.html` en la carpeta `public` del servidor. 
+### introduccion
+
+En este proyecto se explora la aplicación de la capa de aplicación de la arquitectura
+TCP/IP. Al respecto, se abordará desde el estudio del protocolo HTTP desde una
+perspectiva de programación en red. Para esto se desarrollará e implementará un
+servidor web.
+En términos generales la función principal de un servidor web es la entrega de recursos
+(páginas html, imágenes, archivos de estilos, etc) web a un cliente que lo solicita (p.ej.,
+web browser). Para esto, tanto el cliente como el servidor se comunican a través de un
+mismo protocolo que es HTTP.
+De esta forma el objetivo final es desarrollar e implementar un servidor web denominado
+Telematics Web Server – (TWS)) que soporte la versión HTTP/1.1
+Este es un servidor web simple implementado en el lenguaje de programación C utilizando la librería de Berkerly Sockets. El servidor web puede manejar solicitudes HTTP GET, POST y HEAD en un archivo `index.html` en la carpeta `public` del servidor. 
 
 ## Requisitos previos
 
@@ -112,9 +124,7 @@ Respuesta:
       
 ## Conclusiones
 
-En conclusión, este proyecto fue un gran éxito en términos de lograr nuestros objetivos iniciales. Hemos aprendido mucho en el proceso y hemos mejorado nuestras habilidades en la programación en C
-
-este servidor web simple implementado en C utilizando la librería de Beverly Sockets es una buena opción para aquellos que buscan una solución ligera y personalizada para manejar solicitudes HTTP en un archivo index.html. Si bien es importante tener en cuenta los requisitos previos, como la instalación de la librería de Beverly Sockets y el uso de una instancia EC2 de AWS para el despliegue, una vez configurado y en ejecución, el servidor es fácil de probar y personalizar para adaptarse a las necesidades específicas del usuario.
+este servidor web simple implementado en C utilizando la librería de Berkerly Sockets es una buena opción para aquellos que buscan una solución ligera y personalizada para manejar solicitudes HTTP en un archivo index.html. Si bien es importante tener en cuenta los requisitos previos, como la instalación de la librería de Beverly Sockets y el uso de una instancia EC2 de AWS para el despliegue, una vez configurado y en ejecución, el servidor es fácil de probar y personalizar para adaptarse a las necesidades específicas del usuario.
 
 
 
